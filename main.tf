@@ -24,8 +24,14 @@ variable "project" {
 
 // Enable required APIs
 
-resource "google_project_service" "project" {
+resource "google_project_service" "compute_engine_api" {
   service = "compute.googleapis.com"
+
+  disable_dependent_services = true
+}
+
+resource "google_project_service" "cloud_resource_manager_api" {
+  service = "cloudresourcemanager.googleapis.com"
 
   disable_dependent_services = true
 }
