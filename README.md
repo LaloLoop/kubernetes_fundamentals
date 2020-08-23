@@ -81,6 +81,14 @@ Configure the json key you generated in the last section:
 3. Copy the file content.
 4. Create the `GOOGLE_CREDENTIALS` variable in you TC workspace as described in [this article](https://learn.hashicorp.com/tutorials/terraform/cloud-workspace-configure?in=terraform/cloud-get-started), mark the *Sensitive* checkbox.
 
+Configure the SSH public key as variable, generate an SSH key with the following command:
+
+```bash
+ssh-keygen -C student
+```
+
+Set `./id_rsa` as the destination location.
+
 ## Applying changes
 
 Queue a plan in terraform with the resources available in this repository.

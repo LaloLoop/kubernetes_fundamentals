@@ -22,6 +22,16 @@ variable "project" {
   description = "GCP project to create this resources into."
 }
 
+variable "ssh-user" {
+  description = "SSH user to log into the instances."
+  default = "student"
+}
+
+variable "gce_ssh_pub_key_file" {
+  description = "The public SSH key to log into the instances."
+  default = "./id_rsa.pub"
+}
+
 // Enable required APIs
 
 resource "google_project_service" "cloud_resource_manager_api" {
@@ -64,4 +74,30 @@ resource "google_compute_firewall" "fw_lfclass" {
   }  
 
   source_ranges = ["0.0.0.0/0"]
+}
+
+// Nodes
+
+resource "google_compute_instance" "master" {
+  name = "master"
+  zone = "us-central-f"
+  machine_type = "n1-standard-2"
+
+  boot_disk {
+    initialize_params {
+      size = 10
+      image = "ubuntu-1804-lts/ubuntu-1804-bionic-v20200807"
+    }
+  }
+
+  metadata = {
+    "ssh-keys" = "${var.ssh-user}:${file(var.gce_ssh_pub_key_file)}"
+  }
+
+  network_interface {
+    network = google_compute_network.vpc_lfclass.name
+    access_config {
+      // Ephemeral IP
+    }
+  }
 }
