@@ -96,6 +96,7 @@ resource "google_compute_instance" "master" {
 
   network_interface {
     network = google_compute_network.vpc_lfclass.name
+    subnetwork = google_compute_subnetwork.subnet_lfsclass.name
     access_config {
       // Ephemeral IP
     }
