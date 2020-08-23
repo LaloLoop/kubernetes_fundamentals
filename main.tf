@@ -26,7 +26,6 @@ resource "google_compute_network" "vpc_lfclass" {
 
 resource "google_compute_subnetwork" "subnet_lfsclass" {
   name = "lfclass"
-  region = "us-central1"
   ip_cidr_range = "10.2.0.0/16"
   network = google_compute_network.vpc_lfclass.id
 }
