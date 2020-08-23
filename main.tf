@@ -86,7 +86,7 @@ resource "google_compute_instance" "master" {
   boot_disk {
     initialize_params {
       size = 10
-      image = "ubuntu-1804-lts/ubuntu-1804-bionic-v20200807"
+      image = "ubuntu-1804-lts"
     }
   }
 
