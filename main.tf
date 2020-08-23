@@ -85,7 +85,32 @@ resource "google_compute_instance" "master" {
 
   boot_disk {
     initialize_params {
-      size = 10
+      size = 20
+      image = "ubuntu-1804-lts"
+    }
+  }
+
+  metadata = {
+    "ssh-keys" = "${var.ssh-user}:${file(var.gce_ssh_pub_key_file)}"
+  }
+
+  network_interface {
+    network = google_compute_network.vpc_lfclass.name
+    subnetwork = google_compute_subnetwork.subnet_lfsclass.name
+    access_config {
+      // Ephemeral IP
+    }
+  }
+}
+
+resource "google_compute_instance" "worker" {
+  name = "worker"
+  zone = "us-central1-f"
+  machine_type = "n1-standard-2"
+
+  boot_disk {
+    initialize_params {
+      size = 20
       image = "ubuntu-1804-lts"
     }
   }
