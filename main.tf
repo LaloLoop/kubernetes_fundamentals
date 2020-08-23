@@ -11,9 +11,23 @@ terraform {
 // Provider
 
 provider "google" {
-  project     = "lfs258-287104"
+  project     = var.project
   region      = "us-central1"
   version = "~> 3.35.0"
+}
+
+// Variables
+
+variable "project" {
+  description = "GCP project to create this resources into."
+}
+
+// Enable required APIs
+
+resource "google_project_service" "project" {
+  service = "compute.googleapis.com"
+
+  disable_dependent_services = true
 }
 
 // VPC network
