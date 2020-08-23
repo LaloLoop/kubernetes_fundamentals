@@ -49,3 +49,17 @@ resource "google_compute_subnetwork" "subnet_lfsclass" {
   ip_cidr_range = "10.2.0.0/16"
   network = google_compute_network.vpc_lfclass.id
 }
+
+// Firewall rules
+
+resource "google_compute_firewall" "fw_lfclass" {
+  name    = "lfclass"
+  description = "For my LF class"
+  network = google_compute_network.vpc_lfclass.name
+
+  allow {
+    protocol = "all"
+  }  
+
+  source_ranges = ["0.0.0.0/0"]
+}
