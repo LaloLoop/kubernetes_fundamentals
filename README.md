@@ -87,8 +87,23 @@ Configure the SSH public key as variable, generate an SSH key with the following
 ssh-keygen -C student
 ```
 
-Set `./id_rsa` as the destination location.
+Set `./id_rsa` as the destination location, this should pick up your pub key with the default `./id_rsa.pub` file, if you want to change this, modify the `gce_ssh_pub_key_file` variable.
+
+You can connect to the machines once they are provisioned with the following command.
+
+```bash
+ssh -i id_rsa student@<public-up>
+```
 
 ## Applying changes
 
 Queue a plan in terraform with the resources available in this repository.
+
+## Cleaning up
+
+Queue a destroy plan inside Terraform Cloud's Settings > Destruction and Deletion, this won't disable the enable APIs for faster provisioning the second time you run this, which will help you save by not having to run everything 24/7 until you complete the course.
+
+## TODOs
+
+* [ ] Add sudo configuration.
+* [ ] Add extra configurations based on course content.
