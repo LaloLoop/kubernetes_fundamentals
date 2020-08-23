@@ -80,7 +80,7 @@ resource "google_compute_firewall" "fw_lfclass" {
 
 resource "google_compute_instance" "master" {
   name = "master"
-  zone = "us-central-f"
+  zone = "us-central1-f"
   machine_type = "n1-standard-2"
 
   boot_disk {
