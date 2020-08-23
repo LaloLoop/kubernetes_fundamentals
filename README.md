@@ -33,7 +33,8 @@ Create a service account for Terraform, which will have admin permissions in ord
 
 Set up the permissions, give it permission to only those APIs that will be needed, in this case:
 
-* Compute Engine Administrator
+* Compute Engine Administrator: To create VMs, admin VPCs, subnets, etc.
+* Service Usage Admin: To enable GCP APIs.
 
 ![sa-roles](imgs/03_sa_roles.png)
 
@@ -51,6 +52,15 @@ Create a new Access Key for the service account.
 
 ![sa-create-key](imgs/04_create_key.png)
 ![sa-json-key](imgs/05_json_key.png)
+
+### Enable Cloud Resource Manager API
+
+This script will attempt to enable the Cloud Resource Manager API, but it may need some manual help.
+
+1. Go to API & Services
+2. Click con Enable APIs and Services
+3. Search for Cloud Resource Manager API
+4. Enable it
 
 ### Configure Terraform Cloud
 
