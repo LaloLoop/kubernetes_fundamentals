@@ -3,7 +3,7 @@ terraform {
     organization = "laloloop"
 
     workspaces {
-      name = "kubernetes_fundamentals_lfs258"
+      name = "kubernetes_fundamentals"
     }
   }
 }
@@ -13,11 +13,12 @@ terraform {
 resource "google_compute_network" "vpc_lfclass" {
   name = "lfclass"
   description = "For my LF class"
+  auto_create_subnetworks = false
 }
 
 resource "google_compute_subnetwork" "subnet_lfsclass" {
   name = "lfclass"
   region = "us-central1"
   ip_cidr_range = "10.2.0.0/16"
-  network = google_compute_network.vpc_lfclass
+  network = google_compute_network.vpc_lfclass.id
 }
