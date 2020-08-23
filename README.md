@@ -57,10 +57,16 @@ Create a new Access Key for the service account.
 
 This script will attempt to enable the Cloud Resource Manager API, but it may need some manual help.
 
-1. Go to API & Services
-2. Click con Enable APIs and Services
-3. Search for Cloud Resource Manager API
-4. Enable it
+1. Go to API & Services.
+2. Click con Enable APIs and Services.
+3. Search for Cloud Resource Manager API.
+4. Enable it.
+
+Once manually enabled, you can import it with the following command.
+
+```bash
+terraform import google_project_service.cloud_resource_manager_api <project-id>/cloudresourcemanager.googleapis.com
+```
 
 ### Configure Terraform Cloud
 
