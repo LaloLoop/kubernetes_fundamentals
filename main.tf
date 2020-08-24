@@ -94,6 +94,8 @@ resource "google_compute_instance" "master" {
     "ssh-keys" = "${var.ssh-user}:${file(var.gce_ssh_pub_key_file)}"
   }
 
+  metadata_startup_script = file("./scripts/master_startup.sh")
+
   network_interface {
     network = google_compute_network.vpc_lfclass.name
     subnetwork = google_compute_subnetwork.subnet_lfsclass.name
@@ -118,6 +120,8 @@ resource "google_compute_instance" "worker" {
   metadata = {
     "ssh-keys" = "${var.ssh-user}:${file(var.gce_ssh_pub_key_file)}"
   }
+
+  metadata_startup_script = file("./scripts/worker_startup.sh")
 
   network_interface {
     network = google_compute_network.vpc_lfclass.name
