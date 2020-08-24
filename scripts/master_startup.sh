@@ -39,14 +39,9 @@ cp ./calico.yaml /home/student/
 # mkdir -p $HOME/.kube
 # sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 # sudo chown $(id -u):$(id -g) $HOME/.kube/config
-
-# kubectl apply -f calico.yaml
-
 # echo "source <(kubectl completion bash)" >> ~/.bashrc
 
-# Worker setup
+# TODO change to run as user
 
-# CERT_HASH=$(openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed 's/^.* //')
-# TOKEN=$(sudo kubeadm token create)
-
-# kubeadm join --token $TOKEN k8smaster:6443 --discovery-token-ca-cert-hash "sha256:$CERT_HASH"
+kubectl apply -f calico.yaml
+kubectl taint nodes --all node-role.kubernetes.io/master-
