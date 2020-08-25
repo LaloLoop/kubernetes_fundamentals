@@ -36,8 +36,8 @@ cp ./calico.yaml /home/student/
 
 # Run as user
 
-# kubectl apply -f calico.yaml
-# kubectl taint nodes --all node-role.kubernetes.io/master-
+kubectl apply -f /home/student/calico.yaml
+kubectl taint nodes --all node-role.kubernetes.io/master-
 
 # mkdir -p $HOME/.kube
 # sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
