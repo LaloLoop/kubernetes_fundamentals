@@ -36,10 +36,12 @@ cp ./calico.yaml /home/student/
 
 # Run as user
 
+mkdir -p /home/student/.kube
+cp -i /etc/kubernetes/admin.conf /home/student/.kube/config
+chown -R student:student /home/student/.kube/
+
+su - student -c <<EOF
 kubectl apply -f /home/student/calico.yaml
 kubectl taint nodes --all node-role.kubernetes.io/master-
-
-# mkdir -p $HOME/.kube
-# sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-# sudo chown $(id -u):$(id -g) $HOME/.kube/config
-# echo "source <(kubectl completion bash)" >> ~/.bashrc
+echo "source <(kubectl completion bash)" >> ~/.bashrc
+EOF
